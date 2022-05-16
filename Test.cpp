@@ -2,6 +2,8 @@
 #include "OrgChart.hpp"
 using namespace ariel;
 
+/*Renana Rimon*/
+
 TEST_CASE("BUILD_ORG"){
     OrgChart org;
     OrgChart org_empty;
@@ -102,6 +104,27 @@ TEST_CASE("BUILD_ORG"){
         for(auto it = org.begin_preorder(); it != org.end_preorder(); ++it){
             CHECK(it->size() == nums[i++]);
         }
+    }
+
+    SUBCASE("special"){
+        OrgChart org_special;
+        CHECK_NOTHROW(org_special.add_root("boss"));
+        CHECK_NOTHROW(org_special.add_root("boss1"));
+        CHECK_NOTHROW(org_special.add_root("boss2"));
+        CHECK_NOTHROW(org_special.add_root("boss3"));
+        CHECK_NOTHROW(org_special.add_root("boss4"));
+        CHECK_NOTHROW(org_special.add_root("boss5"));
+        CHECK_NOTHROW(org_special.add_root("boss6"));
+
+        /*check that org size is 1, and root is the last*/
+        int i =0; 
+        for(auto it = org.begin_preorder(); it != org.end_preorder(); ++it){
+            CHECK(*it == "boss6");
+            CHECK(i==0);
+            i++;
+        }
+
+
     }
 
 
