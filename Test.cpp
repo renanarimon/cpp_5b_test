@@ -14,6 +14,7 @@ TEST_CASE("BUILD_ORG"){
     CHECK_NOTHROW(org.add_root("shir"));
     CHECK_NOTHROW(org.add_sub("shir", "tal"));
     CHECK_THROWS_MESSAGE(org.add_sub("adi", "sapir"), "employer doesn't exist");
+    CHECK_NOTHROW(org.add_sub("shir", "sapir"));
     CHECK_NOTHROW(org.add_sub("sapir", "dan"));
     CHECK_NOTHROW(org.add_sub("dan", "ziv"));
     CHECK_NOTHROW(org.add_sub("tal", "avi"));
