@@ -27,7 +27,7 @@ TEST_CASE("BUILD_ORG"){
     CHECK_NOTHROW(org.add_root("adi"));
     for (size_t i = 0; i < 20; i++)
     {
-        CHECK_NOTHROW(org.add_sub("shir", "tal"));
+        CHECK_NOTHROW(org.add_sub("adi", "adi"));
     }
 
 
