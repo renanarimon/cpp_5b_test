@@ -24,10 +24,10 @@ TEST_CASE("BUILD_ORG"){
     CHECK_NOTHROW(org.add_sub("ziv", "ofer"));
 
     /* create tree with 1 name*/
-    CHECK_NOTHROW(org.add_root("adi"));
+    CHECK_NOTHROW(org_double_names.add_root("adi"));
     for (size_t i = 0; i < 20; i++)
     {
-        CHECK_NOTHROW(org.add_sub("adi", "adi"));
+        CHECK_NOTHROW(org_double_names.add_sub("adi", "adi"));
     }
 
 
