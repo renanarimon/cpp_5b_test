@@ -30,7 +30,7 @@ TEST_CASE("BUILD_ORG"){
         CHECK_NOTHROW(org_double_names.add_sub("adi", "adi"));
     }
 
-
+    /**************************************************************/
     SUBCASE("level_order"){
         /*check level order with normal tree*/
         std::vector<std::string> v = {"shir", "tal", "sapir", "ido", "avi", "yossi", "dan", "ziv", "shaked", "ofer"};
