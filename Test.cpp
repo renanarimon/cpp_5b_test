@@ -44,7 +44,7 @@ TEST_CASE("BUILD_ORG"){
         CHECK_THROWS_MESSAGE(org_empty.end_level_order(), "chart is empty!");
 
         /*check level order with 1 name tree*/
-        for(auto it = org.begin_level_order(); it != org.end_level_order(); ++it){
+        for(auto it = org_double_names.begin_level_order(); it != org_double_names.end_level_order(); ++it){
             CHECK(*it == "adi");
         }
 
@@ -70,7 +70,7 @@ TEST_CASE("BUILD_ORG"){
         CHECK_THROWS_MESSAGE(org_empty.reverse_order(), "chart is empty!");
 
         /*check reverse level order with 1 name tree*/
-        for(auto it = org.begin_reverse_order(); it != org.reverse_order(); ++it){
+        for(auto it = org_double_names.begin_reverse_order(); it != org_double_names.reverse_order(); ++it){
             CHECK(*it == "adi");
         }
 
