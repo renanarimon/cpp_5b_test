@@ -119,7 +119,7 @@ TEST_CASE("BUILD_ORG"){
 
         /*check that org size is 1, and root is the last*/
         int i =0; 
-        for(auto it = org.begin_preorder(); it != org.end_preorder(); ++it){
+        for(auto it = org_special.begin_preorder(); it != org_special.end_preorder(); ++it){
             CHECK(*it == "boss6");
             CHECK(i==0);
             i++;
