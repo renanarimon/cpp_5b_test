@@ -10,7 +10,7 @@ TEST_CASE("BUILD_ORG"){
     OrgChart org_double_names;
     /* create normal tree */
     CHECK_THROWS_MESSAGE(org.add_sub("tal", "renana"), "can't add sub before root");
-    CHECK_NOTHROW(org.add_root("adi"));
+    CHECK_NOTHROW(org.add_root("dana"));
     CHECK_NOTHROW(org.add_root("shir"));
     CHECK_NOTHROW(org.add_sub("shir", "tal"));
     CHECK_THROWS_MESSAGE(org.add_sub("adi", "sapir"), "employer doesn't exist");
@@ -23,12 +23,14 @@ TEST_CASE("BUILD_ORG"){
     CHECK_NOTHROW(org.add_sub("ziv", "shaked"));
     CHECK_NOTHROW(org.add_sub("ziv", "ofer"));
 
+
     /* create tree with 1 name*/
     CHECK_NOTHROW(org_double_names.add_root("adi"));
-    for (size_t i = 0; i < 20; i++)
+    for (size_t i = 0; i < 11; i++)
     {
         CHECK_NOTHROW(org_double_names.add_sub("adi", "adi"));
     }
+
 
     /**************************************************************/
     SUBCASE("level_order"){
@@ -36,23 +38,27 @@ TEST_CASE("BUILD_ORG"){
         std::vector<std::string> v = {"shir", "tal", "sapir", "ido", "avi", "yossi", "dan", "ziv", "shaked", "ofer"};
         size_t i = 0;
         for(auto it = org.begin_level_order(); it != org.end_level_order(); ++it){
-            CHECK(*it == v[i++]);
+            CHECK_EQ(*it, v.at(i++));
         }
+    
+    
 
         /*check level order with empty tree*/
         CHECK_THROWS_MESSAGE(org_empty.begin_level_order(), "chart is empty!");
         CHECK_THROWS_MESSAGE(org_empty.end_level_order(), "chart is empty!");
+        
 
         /*check level order with 1 name tree*/
         for(auto it = org_double_names.begin_level_order(); it != org_double_names.end_level_order(); ++it){
             CHECK(*it == "adi");
         }
-
+    
         /* check iter size*/
-        std::vector<size_t> nums = {4, 3, 5, 3, 3, 5, 3, 3, 6, 4};
-        i = 0;
+        std::vector<int> nums = {4, 3, 5, 3, 3, 5, 3, 3, 6, 4};
+        int j = 0;
         for(auto it = org.begin_level_order(); it != org.end_level_order(); ++it){
-            CHECK(*it == v[i++]);
+            CHECK_EQ(it->size(), nums.at((size_t)j));
+            j++;
         }
 
     }
@@ -62,8 +68,10 @@ TEST_CASE("BUILD_ORG"){
         std::vector<std::string> v = {"shaked", "ofer", "ziv", "avi", "yossi", "dan", "tal", "sapir", "ido", "shir"};
         size_t i = 0;
         for(auto it = org.begin_reverse_order(); it != org.reverse_order(); ++it){
-            CHECK(*it == v[i++]);
+            CHECK_EQ(*it, v.at(i++));
         }
+    
+    
 
         /*check reverse level order with empty tree*/
         CHECK_THROWS_MESSAGE(org_empty.begin_reverse_order(), "chart is empty!");
@@ -76,9 +84,10 @@ TEST_CASE("BUILD_ORG"){
 
         /* check iter size*/
         std::vector<size_t> nums = {6, 4, 3, 3, 5, 3, 3, 5, 3, 4};
-        i = 0;
+        int j = 0;
         for(auto it = org.begin_reverse_order(); it != org.reverse_order(); ++it){
-            CHECK(*it == v[i++]);
+            CHECK_EQ(it->size(), nums.at((size_t)j));
+            j++;
         }
 
     }
@@ -88,7 +97,7 @@ TEST_CASE("BUILD_ORG"){
         std::vector<std::string> v = {"shir", "tal", "avi", "yossi", "sapir", "dan", "ziv", "shaked", "ofer", "ido"};
         size_t i = 0;
         for(auto it = org.begin_preorder(); it != org.end_preorder(); ++it){
-            CHECK(*it == v[i++]);
+            CHECK_EQ(*it, v.at(i++));
         }
 
         /*check PreOrder with empty tree*/
@@ -101,9 +110,10 @@ TEST_CASE("BUILD_ORG"){
         }
         /* check iter size*/
         std::vector<size_t> nums = {4, 3, 3, 5, 5, 3, 3, 6, 4, 3};
-        i = 0;
+        int j = 0;
         for(auto it = org.begin_preorder(); it != org.end_preorder(); ++it){
-            CHECK(it->size() == nums[i++]);
+            CHECK_EQ(it->size(), nums.at((size_t)j));
+            j++;
         }
     }
 
@@ -127,14 +137,6 @@ TEST_CASE("BUILD_ORG"){
 
 
     }
-
-
-
-
-
-
-
-
 
 
 
